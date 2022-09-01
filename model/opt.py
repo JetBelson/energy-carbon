@@ -9,7 +9,7 @@ class BaseOptions():
         self.parser = argparse.ArgumentParser()
         self.initialized = False
 
-    def initialize(self):    
+    def initialize(self):
         # experiment specifics
         self.parser.add_argument('--verbose', type=bool, default=True, help='log is verbal if true')
         self.parser.add_argument('--name', type=str, default='energy-carbon', help='name of the experiment. It decides where to store samples and models')        

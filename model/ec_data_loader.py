@@ -60,6 +60,8 @@ if __name__ == "__main__":
     ec_dataloader.initialize(opt=base_opt, data_type="train")
     train_loader = ec_dataloader.load_data()
     for i in train_loader:
-        inputs = i["y"]
+        inputs = i["x"]
         # inputs.squeeze()
-        print(inputs.unsqueeze(-1))
+        print(inputs)
+        outputs = i["y"]
+        print(outputs)

@@ -37,7 +37,7 @@ class ECFFNModel(BaseModel):
         @return: inputs, outputs
         """
         inputs = dataset["x"].squeeze().to(torch.float32)
-        outputs = dataset["y"].unsqueeze(-1).to(torch.float32)
+        outputs = dataset["y"].squeeze().to(torch.float32)
         if len(self.gpu_ids) > 0:
             assert(torch.cuda.is_available()) 
             inputs = inputs.cuda()
@@ -53,14 +53,22 @@ class ECFFNModel(BaseModel):
         return loss
 
     def inference(self, dataset):
+        self.model.eval()
         # Encode data
         inputs, outputs = self.encode_input(dataset)
         # Feed forward
         pred = self.model(inputs)
+        self.model.train()
         return pred
 
     def save(self, which_epoch):
         self.save_network(network=self.model, network_label="FFN", epoch_label=which_epoch, gpu_ids=self.gpu_ids)
+    
+    def load(self, which_epoch):
+        self.load_network(network=self.model, network_label="FFN", epoch_label=which_epoch)
+        if len(self.gpu_ids) > 0:
+            assert(torch.cuda.is_available()) 
+            self.model.cuda()
 
     def update_learning_rate(self):
         lrd = self.opt.lr / self.opt.niter_decay

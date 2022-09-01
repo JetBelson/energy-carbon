@@ -63,10 +63,11 @@ class ECDataset(BaseDataset):
         data_dict = {}
         if self.data_type=="train" or self.data_type=="eval":
             data_dict["x"] = torch.Tensor(item[1:7]).unsqueeze(-1)
-            data_dict["y"] = item[-1]
+            eui = (item[-3]/(20*0.757)) / ((item[-3]+item[-2])/item[-1])
+            data_dict["y"] = torch.Tensor([item[-1], eui]).unsqueeze(-1)
         elif self.data_type == "predict":
             data_dict["x"] = torch.Tensor(item[1:7]).unsqueeze(-1)
-            data_dict["y"] = None
+            data_dict["y"] = 0
         return data_dict
 
     def __len__(self):

@@ -35,9 +35,9 @@ class L2Loss(nn.Module):
 # NN blocks
 ##############################################################################
 class FFNet(nn.Module):
-    def __init__(self, dims: List=[6, 13, 13, 4, 1], activation: str="relu"):
+    def __init__(self, dims: List=[6, 13, 13, 4, 2], activation: str="relu"):
         """ 
-        dims in paper one: [6, 13, 4, 1] 
+        dims in paper one: [6, 13, 4, 4] 
         active function in paper one: sigmoid
         """
         super(FFNet, self).__init__()
@@ -53,3 +53,11 @@ class FFNet(nn.Module):
 
     def forward(self, X):
         return self.model(X)
+
+
+if __name__ == "__main__":
+    criteria = L2Loss()
+    a = torch.Tensor([[1 ,2], [1, 2], [1, 2], [1, 2]])
+    b = torch.Tensor([[3, 4], [3, 4], [3, 4], [3, 4]])
+    loss = criteria(a, b)
+    print(loss.item())
