@@ -18,7 +18,7 @@ def load_data(file_name):
 
 if __name__ == "__main__":
     gt = load_data(file_name="../data/rf_data.csv")
-    pd = load_data(file_name="../model/checkpoints/energy-carbon/9500_net_FFN.csv")
+    pd = load_data(file_name="../model/results/energy-carbon/9500_net_FFN.csv")
     # CO2/m2
     x = np.array([row[0] for row in gt])
     y = np.array([row[0] for row in pd])

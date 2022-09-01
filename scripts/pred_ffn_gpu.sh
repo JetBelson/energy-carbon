@@ -3,4 +3,4 @@
 ############## Author: Amneh Hamida, Abdulsalam Alsudairi and Khalid Alshaibani, Othman Alshamrani
 ############## doi: 10.1108/ECAM-06-2020-0450
 cd ../model
-python train.py --gpu_ids 0
+python pred.py --gpu_ids 0

@@ -23,7 +23,8 @@ if __name__ == "__main__":
     
     #### log file
     save_filename = '%s_net_%s.csv' % (9500, "FFN")
-    pred_file = open(os.path.join(model.save_dir, save_filename), "w")
+    # TODO add this configures to options
+    pred_file = open(os.path.join("results", opt.name, save_filename), "w")
     log(file=pred_file, msg="pred-AvgCO2,pred-EUI")
     start_time = time.time()
     for i, pred_data in tqdm(enumerate(pred_loader)):
