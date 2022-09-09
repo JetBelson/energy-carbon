@@ -24,7 +24,9 @@ class BaseOptions():
         
         # dataset specifics
         self.parser.add_argument('--batch_size', type=int, default=16, help='batch size for data loader')
-        self.parser.add_argument('--dataroot', type=str, default='../data/data.csv', help='dataroot for train/eval/test')
+        self.parser.add_argument('--train_data', type=str, default='../data/train-eval.csv', help='dataroot for train and eval')
+        self.parser.add_argument('--pred_data', type=str, default='../data/test.csv', help='dataroot for prediction')
+
 
         # optimizer specifics
         self.parser.add_argument('--beta1', type=float, default=0.5, help='momentum term of adam')

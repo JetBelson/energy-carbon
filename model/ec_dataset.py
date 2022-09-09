@@ -25,24 +25,30 @@ class ECDataset(BaseDataset):
         @param: data_type, train, eval, predict
         """
         self.opt = opt
-        self.root = opt.dataroot
+        self.train_data = opt.train_data
+        self.pred_data = opt.pred_data
         self.data_type = data_type
 
-        ### load data from root
-        with open(self.root, "r") as rf:
-            lines = rf.readlines()
-        lines = [line.strip() for line in lines]
-        data_size = len(lines)
-
+        ### load data from data file
         if data_type == "train":
+            with open(self.train_data, "r") as rf:
+                lines = rf.readlines()
+            lines = [line.strip() for line in lines]
+            data_size = len(lines)
             train_data_size = int(data_size*0.8)
             self.data = lines[:train_data_size]
-
         if data_type == "eval":
+            with open(self.train_data, "r") as rf:
+                lines = rf.readlines()
+            lines = [line.strip() for line in lines]
+            data_size = len(lines)
             eval_data_size = int(data_size*0.2)
             self.data = lines[-eval_data_size:]
-
         if data_type == "predict":
+            with open(self.pred_data, "r") as rf:
+                lines = rf.readlines()
+            lines = [line.strip() for line in lines]
+            data_size = len(lines)
             self.data = lines
 
         ### U-values of different type

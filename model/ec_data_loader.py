@@ -23,8 +23,7 @@ class ECDataLoader(BaseDataLoader):
         self.dataloader = torch.utils.data.DataLoader(
             self.dataset,
             batch_size=opt.batch_size,
-            shuffle=True if data_type=="train" else False
-        )
+            shuffle=True if data_type=="train" else False)
 
     def load_data(self):
         return self.dataloader
@@ -57,7 +56,7 @@ if __name__ == "__main__":
     base_opt = BaseOptions()
     base_opt = base_opt.parse()
     ec_dataloader = ECDataLoader()
-    ec_dataloader.initialize(opt=base_opt, data_type="train")
+    ec_dataloader.initialize(opt=base_opt, data_type="predict")
     train_loader = ec_dataloader.load_data()
     for i in train_loader:
         inputs = i["x"]

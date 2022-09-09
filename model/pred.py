@@ -19,10 +19,10 @@ if __name__ == "__main__":
 
     #### create model 
     model = CreateModel(opt=opt)
-    model.load(which_epoch=9500)
+    model.load(which_epoch=9999)
     
     #### log file
-    save_filename = '%s_net_%s.csv' % (9500, "FFN")
+    save_filename = '%s_net_%s.csv' % (9999, "FFN")
     # TODO add this configures to options
     pred_file = open(os.path.join("results", opt.name, save_filename), "w")
     log(file=pred_file, msg="pred-AvgCO2,pred-EUI")

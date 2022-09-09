@@ -1,0 +1,3 @@
+Indicator, Avg absolute error, Avg related error, Max absolute error, Max related error
+C02,2.1e+01,0.017,4.8e+01,0.04
+EUI,2.2,0.029,4.0,0.056
