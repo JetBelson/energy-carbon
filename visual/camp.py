@@ -66,5 +66,20 @@ def model_pf(gt_file="../data/rf_test.csv", pd_file="../model/results/energy-car
     ))
 
 
+def plot_loss(file_name = "../model/checkpoints/energy-carbon/loss.txt"):
+    with open(file_name, "r") as rf:
+        lines = rf.readlines()
+
+    x, y = [], []
+    for line in lines[1:]:
+        epoch_loss = line.strip().split(",")
+        x.append(float(epoch_loss[0]))
+        y.append(float(epoch_loss[1]))
+    plt.plot(x, y)
+    plt.title("loss")
+    plt.show()
+
+
 if __name__ == "__main__":
-    model_pf(is_show=False)
+    # model_pf(is_show=False)
+    plot_loss()
