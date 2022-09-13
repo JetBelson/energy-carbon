@@ -61,6 +61,11 @@ class ECFFNModel(BaseModel):
         self.model.train()
         return pred
 
+    def predict(self, inputs):
+        self.model.eval()
+        pred = self.model(inputs)
+        return pred
+
     def save(self, which_epoch):
         self.save_network(network=self.model, network_label="FFN", epoch_label=which_epoch, gpu_ids=self.gpu_ids)
     
