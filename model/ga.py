@@ -9,15 +9,9 @@ from ffn_model import CreateModel
 from ec_data_loader import CreateDataLoader
 
 
-#### TFS weights
-weights = [0, 1]
-
-
-def ecANNWrapper():
-    #### model
-    opt = BaseOptions().parse()
-    model = CreateModel(opt=opt)
-    model.load(which_epoch=9999)
+def ecANNWrapper(model):
+    #### TFS weights
+    weights = [0, 1]
     
     def ecANN(inputs):
         """
@@ -44,8 +38,11 @@ def ecANNWrapper():
     return ecANN
 
 if __name__ == "__main__":
-
-    func = ecANNWrapper()
+    opt = BaseOptions().parse()
+    model = CreateModel(opt=opt)
+    model.load(which_epoch=9999)
+    func = ecANNWrapper(model=model)
+    # print(func([2, 2, 4, 10, 2, 108]))
     ga = GA(func=func, n_dim=6, size_pop=100, max_iter=500, prob_mut=0.001, 
             lb=[1, 1, 1, 10, 1, 0], 
             ub=[4, 3, 4, 30, 2, 359], 
