@@ -46,7 +46,7 @@ if __name__ == "__main__":
     ga = GA(func=func, n_dim=6, size_pop=100, max_iter=500, prob_mut=0.001, 
             lb=[1, 1, 1, 10, 1, 0], 
             ub=[4, 3, 4, 30, 2, 359], 
-            precision=[1, 1, 1, 1e-3, 1, 1])
+            precision=[1, 1, 1, 1e-1, 1, 1])
     best_x, best_y = ga.run()
     print('best_x:', best_x, '\n', 'best_y:', best_y)
     Y_history = pd.DataFrame(ga.all_history_Y)

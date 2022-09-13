@@ -29,12 +29,19 @@ def model_pf(gt_file="../data/rf_test.csv", pd_file="../model/results/energy-car
 
     #### Visualize results
     if is_show:
-        plt.scatter(x_co2, y_co2)
-        plt.title("CO2/m2")
+        # plt.scatter(x_co2, y_co2)
+        # plt.title("CO2/m2")
+        # plt.show()
+        # plt.scatter(x_eui, y_eui)
+        # plt.title("eui")
+        # plt.show()
+        plt.plot(x_co2, y_co2, 'k.')
+        plt.plot(np.arange(1000,1600),np.arange(1000,1600), 'b-')
         plt.show()
-        plt.scatter(x_eui, y_eui)
-        plt.title("eui")
+        plt.plot(x_eui, y_eui, 'k.')
+        plt.plot(np.arange(60,100),np.arange(60,100), 'b-')
         plt.show()
+    
     #### log book
     log_name = pd_file.split("/")[-1].split(".")[0]
     fo = open("./error/"+log_name+".txt", "w")
@@ -81,5 +88,5 @@ def plot_loss(file_name = "../model/checkpoints/energy-carbon/loss.txt"):
 
 
 if __name__ == "__main__":
-    # model_pf(is_show=False)
-    plot_loss()
+    model_pf(is_show=True)
+    # plot_loss()

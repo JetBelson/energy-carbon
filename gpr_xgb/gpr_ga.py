@@ -5,6 +5,7 @@ import time
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import WhiteKernel, ExpSineSquared, RBF, Exponentiation, Matern, RationalQuadratic
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn import datasets, ensemble
 
 import matplotlib.pyplot as plt
 from sko.GA import GA, GA_TSP
@@ -144,13 +145,13 @@ def gprFuncWrapper(model, max_val):
 
 
 if __name__ == "__main__":
-    gaussian_process, max_val = train_eval_test()
+    gaussian_process, max_val = train_eval_test(is_visual=True)
     func = gprFuncWrapper(model=gaussian_process, max_val=max_val)
     # print(func([1, 2, 4, 10, 2, 108]))
     ga = GA(func=func, n_dim=6, size_pop=100, max_iter=500, prob_mut=0.001, 
             lb=[1, 1, 1, 10, 1, 0], 
             ub=[4, 3, 4, 30, 2, 359], 
-            precision=[1, 1, 1, 1e-3, 1, 1])
+            precision=[1, 1, 1, 1e-1, 1, 1])
     best_x, best_y = ga.run()
     print('best_x:', best_x, '\n', 'best_y:', best_y)
     Y_history = pd.DataFrame(ga.all_history_Y)
